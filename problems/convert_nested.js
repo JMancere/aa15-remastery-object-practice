@@ -37,7 +37,14 @@ const dataArray = genNestedData(5)
 
 const convertNested = (arr) => {
     // your code here
-    //convert arr 
+    //convert arr
+    let result = {};
+    arr.forEach(e => {
+      result[e.id] = {...e};
+      delete result[e.id].details
+    });
+    console.log(arr, 'RRR==', result)
+    return result
 }
 
 
