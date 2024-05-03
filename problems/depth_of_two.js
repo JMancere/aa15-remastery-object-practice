@@ -34,7 +34,7 @@ const depthOfTwo = (obj) => {
   let result = [];
   // your code here
   //want to return all data at depth 2 (meaning second nested object)
-  let temp = {}
+  //let temp = {}
   for (i in obj) {//gets us keys
     //console.log(obj[i], typeof obj[i], Array.isArray(obj[i]))
     //if (typeof obj[i] === 'Object')
@@ -53,14 +53,39 @@ const depthOfTwo = (obj) => {
 
 const anyDepthBonus = (obj, depth) => {
     // your code here
+    let result = [];
+    if (depth < 1) return result;
+
+    if (depth === 1){
+      result.push(...Object.values(obj));
+
+      //console.log('depth111 ==== ', obj, result)
+      // if (Array.isArray(obj)){
+      //   console.log('depth111 ==== ', obj)
+      //   return obj;
+
+      // }
+      // for (i in obj) {//gets us keys
+      //     result.push(Object.values(obj[i]));
+      // }
+      return result;
+    }
 
 
+    for (i in obj) {//loop through each item in obj
+      //if it is an object
+      if (typeof obj[i] === 'object' && !Array.isArray(obj[i])){
+        result = [...result, ...anyDepthBonus(obj[i], depth -1)];
+      }
+    }
+    //console.log('returning d o', depth, obj, result)
+    return result;
 }
 
 
 
  //console.log(depthOfTwo(nestedObj));               // ["cello", "dello", "fellow", { h: "hello", i: "io" }, "jello"]
- console.log(anyDepthBonus(nestedObj, 3))          // ["hello", "io"]
+ //console.log(anyDepthBonus(nestedObj, 3))          // ["hello", "io"]
 
 /*** Do not change the code below this line ***/
 module.exports = { depthOfTwo, anyDepthBonus }
