@@ -26,21 +26,41 @@ const nestedObj = {
             i: "io"
         },
         j: "jello"
+    },
+    t: ['asadasd']
+}
+
+const depthOfTwo = (obj) => {
+  let result = [];
+  // your code here
+  //want to return all data at depth 2 (meaning second nested object)
+  let temp = {}
+  for (i in obj) {//gets us keys
+    //console.log(obj[i], typeof obj[i], Array.isArray(obj[i]))
+    //if (typeof obj[i] === 'Object')
+    if (typeof obj[i] === 'object' && !Array.isArray(obj[i])){
+      //console.log('obji is::', obj[i], Object.values(obj[i]))
+      result.push(...Object.values(obj[i]));
+      //Object.assign(temp, obj[i]);
     }
+  }
+  //temp now contains 2nd level items.
+
+  //console.log('o, r == ', obj, '\nAAA', result, '\nBBB', temp)
+  return result
+
 }
 
-const depthOfTwo = () => {
+const anyDepthBonus = (obj, depth) => {
     // your code here
+
+
 }
 
-const anyDepthBonus = () => {
-    // your code here
-}
 
 
-
-// console.log(depthOfTwo(nestedObj));               // ["cello", "dello", "fellow", { h: "hello", i: "io" }, "jello"]
-// console.log(anyDepthBonus(nestedObj, 3))          // ["hello", "io"]
+ //console.log(depthOfTwo(nestedObj));               // ["cello", "dello", "fellow", { h: "hello", i: "io" }, "jello"]
+ console.log(anyDepthBonus(nestedObj, 3))          // ["hello", "io"]
 
 /*** Do not change the code below this line ***/
 module.exports = { depthOfTwo, anyDepthBonus }
